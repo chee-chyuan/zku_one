@@ -1,46 +1,24 @@
-# Advanced Sample Hardhat Project
+# ZKU_one background Assignment
 
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
+## HelloWorld.sol
+Unit test has been written to demonstate basic property of the smart contract
 
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
+Example screenshot in Remix:
+<img width="1250" alt="image" src="https://user-images.githubusercontent.com/60590919/162229579-72321d69-812c-4ad3-9168-a1067bb032eb.png">
 
-Try running some of the following tasks:
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.ts
-TS_NODE_FILES=true npx ts-node scripts/deploy.ts
-npx eslint '**/*.{js,ts}'
-npx eslint '**/*.{js,ts}' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
-```
 
-# Etherscan verification
+## Ballot.sol
+As Ropsten is abit slow to me, I increase the time limit from 5 minutes to 10minutes. Hope you don't mind
 
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
+Unit test has been written to demonstate the effect of time limit
 
-In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
+### Deployed version
+The modified `Ballot.sol` has been deployed and verified in Ropsten Etherscan
+https://ropsten.etherscan.io/address/0x9485Cff33F47b70302c198AFD2e1fDD923B33cD2
 
-```shell
-hardhat run --network ropsten scripts/deploy.ts
-```
+The successful vote the happens before the time limit
+https://ropsten.etherscan.io/tx/0xa3843fa141795437593ca2c1526031729ca63b44782841f8022c34e4c0a07094
 
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
-
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
-```
-
-# Performance optimizations
-
-For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment. For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
+Reverted transaction after time limit with Custom Error
+https://ropsten.etherscan.io/tx/0xd21719602d783c153eaeaf06fc62dd2b6cdcc024fa324e815a50e1e56aaafaa6
